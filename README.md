@@ -96,15 +96,3 @@ All unique modifications and additions in this fork are under **GPL-3.0**.
 This tool is provided **as-is** for research and development purposes only. Use at your own risk. The developers are **not responsible** for any damage, data loss, or consequences resulting from its use.  
 
 ---
-
-## Star History
-
-## Star History
-
-<a href="https://www.star-history.com/?repos=RDX-Sci01%2Fps5-y2jb-autoloader_SK&type=date&legend=top-left">
- <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=RDX-Sci01/ps5-y2jb-autoloader_SK&type=date&theme=dark&legend=top-left" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=RDX-Sci01/ps5-y2jb-autoloader_SK&type=date&legend=top-left" />
-   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=RDX-Sci01/ps5-y2jb-autoloader_SK&type=date&legend=top-left" />
- </picture>
-</a>
