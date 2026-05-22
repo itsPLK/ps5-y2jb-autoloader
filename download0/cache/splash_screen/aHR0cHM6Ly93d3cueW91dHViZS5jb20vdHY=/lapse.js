@@ -1702,7 +1702,6 @@ async function start_lapse() {
         ////////////////////
         
         await log(lapse_version);
-        send_notification(lapse_version);
         
         if(typeof load_aioshellcode === "undefined") {
             await log("Update Y2JB to at least 1.4 version");
