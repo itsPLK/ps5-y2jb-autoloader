@@ -1109,6 +1109,12 @@ function trigger() {
             window.updateProgress(50, "Kernel exploit finished.");
         }
 
+        if (!is_jailbroken()) {
+            send_notification("[ERROR] Jailbreak failed");
+            await kill_youtube(5000);
+            return;
+        }
+
         await start_update();
         await start_icon_update();
         await start_autoload();
