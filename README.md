@@ -4,7 +4,7 @@
 <h1 align="center">PS5 Y2JB Autoloader</h1>
 <h3 align="center">Fork of <a href="https://github.com/Gezine/Y2JB">Y2JB</a></h3>
 &nbsp;
-<p align="center">Automatically loads the kernel exploit, elf_loader, your elf payloads, and .js scripts.<br>Supports PS5 firmwares 4.03-10.01</p>
+<p align="center">Automatically loads the kernel exploit, elf_loader, your elf payloads, and .js scripts.<br>Supports PS5 firmwares 4.03-12.40</p>
 
 <p align="center">
     <b>Other Autoloaders:</b><br>
@@ -107,6 +107,7 @@ Since version **v0.5**, the autoloader includes **Payload Manager**. Using it is
 * **[BenNoxXD](https://github.com/BenNoxXD)** - [ClosePlayer](https://github.com/BenNoxXD/PS5-BDJ-HEN-loader) reference
 * **[ntfargo](https://github.com/ntfargo)** - Thanks for providing V8 CVEs and CTF writeups
 * **abc and psfree team** - Lapse implementation
+* **[matem6](https://github.com/matem6)** - [P2JB](https://github.com/matem6/P2JB-Y2JB-Porting) implementation
 * **[flat_z](https://github.com/flatz) and [LM](https://github.com/LightningMods)** - Helping implement GPU rw using direct ioctl
 * **[john-tornblom](https://github.com/john-tornblom) and [EchoStretch](https://github.com/EchoStretch)** - Providing elfldr.elf payload
 * **[hammer-83](https://github.com/hammer-83)** - Various BD-J PS5 exploit references
