@@ -1171,7 +1171,7 @@ function trigger() {
 
         let kill_yt_on_finish = true;
 
-        if (compare_version(FW_VERSION, "10.01") <= 0) {
+        if (compare_version(FW_VERSION, "0.01") <= 0) {
             await start_lapse();
         }
 
