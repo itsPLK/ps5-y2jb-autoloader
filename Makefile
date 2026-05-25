@@ -1,4 +1,4 @@
-VERSION    := 0.6.2
+VERSION    := 0.6.3
 
 # Git info for versioning
 GIT_HASH   := $(shell git rev-parse --short HEAD 2>/dev/null || echo "unknown")
