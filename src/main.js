@@ -5,8 +5,6 @@
     of the MIT license.  See the LICENSE file for details.
 */
 
-const version_string = "Y2JB 1.4 by Gezine";
-
 const autoloader_version = "@@VERSION@@";
 
 
@@ -286,7 +284,7 @@ function trigger() {
     try {
         if (typeof window.autoloader_ui === 'function') {
             window.autoloader_ui();
-            window.uiLog("Autoloader " + autoloader_version + " by PLK", "success");
+            window.uiLog("Y2JB Autoloader " + autoloader_version + " by PLK", "success");
             window.updateProgress(0, "Running userland exploit...");
 
         }
@@ -1071,7 +1069,7 @@ function trigger() {
         FW_VERSION = get_fwversion();
         TITLE_ID = get_title_id();
         
-        send_notification(version_string + "\nFW : " + FW_VERSION + "\nTitle ID : " + TITLE_ID);
+        send_notification("FW : " + FW_VERSION + "\nTitle ID : " + TITLE_ID);
         await log("FW detected : " + FW_VERSION);
         await log("Title ID detected : " + TITLE_ID);
         
