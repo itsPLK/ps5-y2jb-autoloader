@@ -19,6 +19,17 @@ async function load_localscript(src) {
     });
 }
 
+function compare_version(a, b) {
+    if (!a || !b) return 0;
+    const aParts = a.split('.').map(Number);
+    const bParts = b.split('.').map(Number);
+    const amaj = aParts[0] || 0;
+    const amin = aParts[1] || 0;
+    const bmaj = bParts[0] || 0;
+    const bmin = bParts[1] || 0;
+    return amaj === bmaj ? amin - bmin : amaj - bmaj;
+}
+
 (async function() {
     await load_localscript('global.js');
 })();
@@ -1053,7 +1064,7 @@ function trigger() {
                 const lowerText = text.toLowerCase();
                 if (lowerText.includes("[error]") || lowerText.includes("[-]") || 
                     lowerText.includes("error") || lowerText.includes("failed") || 
-                    lowerText.includes("exception") || lowerText.includes("lapse") || 
+                    lowerText.includes("exception") || lowerText.includes("lapse") || lowerText.includes("p2jb") ||
                     lowerText.includes("jailbroken") || lowerText.includes("exploit")) {
                     isSystemNotify = true;
                 }
@@ -1096,6 +1107,7 @@ function trigger() {
         ////////////////////
 
         await load_localscript('lapse.js');
+        await load_localscript('p2jb.js');
         await load_localscript('update.js');
         await load_localscript('icon_update.js');
         await load_localscript('autoload.js');
@@ -1103,7 +1115,17 @@ function trigger() {
             window.updateProgress(20, "Running kernel exploit...");
         }
 
-        await start_lapse();
+        if (compare_version(FW_VERSION, "10.01") <= 0) {
+            await start_lapse();
+        }
+        else if (compare_version(FW_VERSION, "12.40") <= 0) {
+            await start_p2jb();
+        }
+        else {
+            send_notification("[ERROR] Unsupported fw: " + FW_VERSION);
+            await kill_youtube(5000);
+            return;
+        }
 
         if (typeof window.updateProgress === 'function') {
             window.updateProgress(50, "Kernel exploit finished.");
