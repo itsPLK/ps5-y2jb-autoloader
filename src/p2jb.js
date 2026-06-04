@@ -2306,6 +2306,9 @@ async function start_p2jb() {
             }
         } catch (_) { failcheck_path = null; }
 
+        send_notification("waiting 10 seconds");
+        await js_sleep(10000);
+
         ensure_kernel_offset();
 
         my_init_threading();
