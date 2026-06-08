@@ -1169,14 +1169,10 @@ function trigger() {
             window.updateProgress(20, "Running kernel exploit...");
         }
 
-        let kill_yt_on_finish = true;
-
         if (compare_version(FW_VERSION, "0.01") <= 0) {
             await start_lapse();
         }
-
-        if (compare_version(FW_VERSION, "12.40") <= 0) {
-            kill_yt_on_finish = false;
+        else if (compare_version(FW_VERSION, "12.40") <= 0) {
             await start_p2jb();
         }
         else {
@@ -1191,9 +1187,7 @@ function trigger() {
 
         if (!is_jailbroken()) {
             send_notification("[ERROR] Jailbreak failed");
-            if (kill_yt_on_finish) {
-                await kill_youtube(5000);
-            }
+            await kill_youtube(5000);
             return;
         }
 
@@ -1204,10 +1198,8 @@ function trigger() {
         if (typeof window.updateProgress === 'function') {
             window.updateProgress(100, "Autoload finished.");
         }
-        if (kill_yt_on_finish) {
-            send_notification("Closing YT app");
-            await kill_youtube(500);
-        }
+        send_notification("Closing YT app");
+        await kill_youtube(500);
 
     } catch (e) {                
         if (typeof window.hideUI === 'function') window.hideUI();
