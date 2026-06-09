@@ -549,6 +549,9 @@ function kill_progress_overlay() {
 function start_progress_overlay(total_minutes) {
     kill_progress_overlay();
 
+    const baseWidth = 1920;
+    const scale = window.innerWidth / baseWidth;
+
     const overlay = document.createElement("div");
     overlay.id = "progress_overlay";
     overlay.style.position = "fixed";
@@ -562,12 +565,23 @@ function start_progress_overlay(total_minutes) {
     overlay.style.fontFamily = "monospace, Arial, sans-serif";
     overlay.style.userSelect = "none";
 
+    const scaleContainer = document.createElement("div");
+    scaleContainer.id = "progress_scale_container";
+    scaleContainer.style.position = "absolute";
+    scaleContainer.style.top = "0px";
+    scaleContainer.style.left = "0px";
+    scaleContainer.style.width = "1920px";
+    scaleContainer.style.height = "1080px";
+    scaleContainer.style.transform = "scale(" + scale + ")";
+    scaleContainer.style.transformOrigin = "top left";
+    overlay.appendChild(scaleContainer);
+
     const contentBox = document.createElement("div");
     contentBox.id = "progress_box";
     contentBox.style.position = "absolute";
     contentBox.style.padding = "20px";
     contentBox.style.backgroundColor = "#000000";
-    overlay.appendChild(contentBox);
+    scaleContainer.appendChild(contentBox);
 
     const title = document.createElement("div");
     title.textContent = "Kernel Exploit in progress...";
