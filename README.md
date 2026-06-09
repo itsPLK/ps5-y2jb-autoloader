@@ -4,7 +4,7 @@
 <h1 align="center">PS5 Y2JB Autoloader</h1>
 <h3 align="center">Fork of <a href="https://github.com/Gezine/Y2JB">Y2JB</a></h3>
 &nbsp;
-<p align="center">Automatically loads the kernel exploit, elf_loader, your elf payloads, and .js scripts.<br>Supports PS5 firmwares 4.03-12.40</p>
+<p align="center">Automatically loads the kernel exploit, elf_loader, your elf payloads, and .js scripts.<br>Supports PS5 firmwares 4.03-12.70</p>
 
 <p align="center">
     <b>Other Autoloaders:</b><br>
@@ -40,7 +40,10 @@ Installation is the same as the original [Y2JB](https://github.com/Gezine/Y2JB/b
 
 
 ### Jailbroken PS5 (Webkit, Lua, BD-JB)
-- Install correct YouTube version (v1.03).
+- Install the correct YouTube version for your firmware:
+  - For firmware **4.03 to 12.40** get YouTube app (PPSA01650) version **01.000.003** PKG
+  - For firmware **12.60 and up** get YouTube app (PPSA01650) version **01.000.030** PKG
+  - *(Note: PPSA01651 and PPSA01652 from different regions also work)*
 - Use FTP to place `download0.dat` from releases page in `/user/download/PPSA0165*`
 
 ### Non-Jailbroken PS5
