@@ -1,4 +1,4 @@
-(async function () {
+async function start_relapse() {
     try {
         const relapse_version = "relapse-y2jb 1.0";
         const WORKER_STACK_SIZE = 0x4000n;
@@ -144,6 +144,7 @@
             const seq = (log_seq < 10 ? "00" : log_seq < 100 ? "0" : "") + log_seq;
             const text = "[relapse " + seq + "] " + msg;
             try {
+                if (typeof window.uiLog === 'function') window.uiLog(text);
                 const pr = log(text);           // on-screen (async, may lag)
                 if (pr && typeof pr.catch === "function") pr.catch(() => { });
             } catch (_) { }
@@ -6194,7 +6195,7 @@
         if (typeof is_jailbroken === "function" && is_jailbroken()) {
             send_notification("relapse: already jailbroken");
             say("already jailbroken - nothing to do");
-            return;
+            return false;
         }
         if (!ALLOW_AFTER_P2JB) {
             const p2jb_markers = ["/user/temp/common_temp/p2jb.fail"];
@@ -6239,7 +6240,7 @@
             } else if (present.length) {
                 send_notification("relapse already ran this boot\nreboot the PS5 first");
                 say("fail marker present (" + present[0] + ") - reboot before retrying");
-                return;
+                return false;
             }
         } catch (_) { }
         const chain = new Y2Chain(p);
@@ -6311,7 +6312,7 @@
             } else {
                 send_notification("relapse stopped\n(see log)");
             }
-            return;
+            return false;
         }
         try {
             globalThis.relapse_status = function () {
@@ -6393,10 +6394,12 @@
             say("EXIT_TEST: the process is still here - the exit call returned " +
                 "(kill " + EXIT_TEST + " did not take effect)");
         }
+        return true;
     } catch (e) {
         try { log_now("FATAL: " + e.message); } catch (_) { }
         try { send_notification("relapse FAILED: " + e.message); } catch (_) { }
+        return false;
     } finally {
         restore_log_socket();
     }
-})();
+}

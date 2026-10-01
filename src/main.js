@@ -1185,7 +1185,8 @@ function trigger() {
         ////////////////////
 
         await load_localscript('lapse.js');
-        await load_localscript('p2jb.js');
+        // await load_localscript('p2jb.js');
+        await load_localscript('relapse.js');
         await load_localscript('update.js');
         await load_localscript('icon_update.js');
         await load_localscript('autoload.js');
@@ -1198,8 +1199,13 @@ function trigger() {
         if (compare_version(FW_VERSION, "10.01") <= 0) {
             exploit_success = await start_lapse();
         }
+        /*
         else if (compare_version(FW_VERSION, "12.70") <= 0) {
             exploit_success = await start_p2jb();
+        }
+        */
+        else if (compare_version(FW_VERSION, "13.60") <= 0) {
+            exploit_success = await start_relapse();
         }
         else {
             send_notification("[ERROR] Unsupported fw: " + FW_VERSION);
