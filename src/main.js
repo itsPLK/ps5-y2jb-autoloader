@@ -1230,6 +1230,7 @@ function trigger() {
 
         await start_update();
         await start_icon_update();
+        await sleep(1000);
         await start_autoload();
 
         if (typeof window.updateProgress === 'function') {

@@ -472,9 +472,12 @@ function nanosleep(nsec) {
     syscall(SYSCALL.nanosleep, timespec);
 }
 
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
 
 async function kill_youtube(delay_ms = 5000) {
-    await new Promise(resolve => setTimeout(resolve, delay_ms));
+    await sleep(delay_ms);
     const pid = syscall(SYSCALL.getpid);
     syscall(SYSCALL.kill, pid, SIGKILL);
 }
