@@ -1195,7 +1195,7 @@ function trigger() {
 
         let exploit_success = false;
 
-        if (compare_version(FW_VERSION, "10.01") <= 0) {
+        if (compare_version(FW_VERSION, "6.99") <= 0) {
             exploit_success = await start_lapse();
         } else if (compare_version(FW_VERSION, "13.60") <= 0) {
             exploit_success = await start_relapse();
@@ -1222,7 +1222,10 @@ function trigger() {
 
         await start_update();
         await start_icon_update();
+        window.uiLog("Jailbreak done.", "success");
         await sleep(1000);
+        window.uiLog("Closing YT app in 3 seconds...", "success");
+        await sleep(3000);
         await start_autoload();
 
         if (typeof window.updateProgress === 'function') {
