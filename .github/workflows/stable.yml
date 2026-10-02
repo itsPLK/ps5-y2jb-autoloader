@@ -25,6 +25,48 @@ jobs:
         id: build_package
         run: ./build.sh --stable --download-deps
 
+      - name: Prepare download0 directory
+        run: |
+          mkdir -p download0/cache/splash_screen/aHR0cHM6Ly93d3cueW91dHViZS5jb20vdHY=
+          unzip -q y2jb_update.zip -d download0/cache/splash_screen/aHR0cHM6Ly93d3cueW91dHViZS5jb20vdHY=
+          rm -f download0/cache/splash_screen/aHR0cHM6Ly93d3cueW91dHViZS5jb20vdHY=/update-info.txt
+
+      - name: Create UFS2 download0.dat in FreeBSD
+        uses: vmactions/freebsd-vm@v1
+        with:
+          release: "14.2"
+          copyback: true
+          run: |
+            set -e
+
+            # 1. Create 336789504 byte image file
+            truncate -s 336789504 download0.dat
+
+            # 2. Attach as memory disk (returns e.g. "md0")
+            MD=$(mdconfig -a -t vnode -f "$(pwd)/download0.dat")
+
+            # 3. Create UFS2 filesystem
+            # -b 32768 (Block size), -f 4096 (Fragment size)
+            newfs -O 2 -b 32768 -f 4096 /dev/${MD}
+
+            # 4. Mount
+            mount /dev/${MD} /mnt
+
+            # 5. Copy all contents
+            cp -R download0/* /mnt/
+
+            # 6. Set permissions
+            chmod -R 777 /mnt/*
+
+            # 7. Unmount and detach
+            umount /mnt
+            mdconfig -d -u ${MD}
+
+      - name: Verify image and cleanup
+        run: |
+          file download0.dat
+          rm -rf download0
+
       - name: Get Version
         id: get_version
         run: |
@@ -63,7 +105,7 @@ jobs:
           </details>
           EOF
 
-          gh release create "$TAG_NAME" y2jb_update.zip \
+          gh release create "$TAG_NAME" y2jb_update.zip download0.dat \
             --target "$TARGET_COMMIT" \
             --title "$RELEASE_TITLE" \
             --notes-file release_notes.md

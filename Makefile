@@ -26,7 +26,7 @@ y2jb_update.zip: $(SRC_FILES)
 	rm -rf build_dir
 
 clean:
-	rm -rf build_dir y2jb_update.zip
+	rm -rf build_dir y2jb_update.zip download0.dat download0
 
 .PHONY: all clean print-version
 print-version:

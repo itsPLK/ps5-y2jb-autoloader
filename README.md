@@ -118,6 +118,7 @@ etaHEN.elf
 * **[zecoxao](https://github.com/zecoxao), [idlesauce](https://github.com/idlesauce), and [TheFlow](https://github.com/theofficialflow)** - Helping troubleshoot dlsym
 * **[Dr.Yenyen](https://github.com/DrYenyen) and PS5 R&D community** - Testing Y2JB
 * **Rush** - Creating Y2JB backup file
+* **[Feyzee61](https://github.com/Feyzee61)** - [download0.dat generator workflow](https://github.com/Feyzee61/ps5-y2jb-autoloader/blob/main/.github/workflows/build.yml)
 * **[ufm42](https://github.com/ufm42)** - [kexp](https://github.com/ufm42/kexp) used for PS5 post JB all-in-one shellcode
 
 ## License

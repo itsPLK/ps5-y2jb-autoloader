@@ -4,3 +4,6 @@ src/elfldr-ps5-*.elf
 src/kexp-*.bin
 src/ps5-unified-autoloader.elf
 build_dir/
+download0.dat
+download0/
+y2jb_update/
