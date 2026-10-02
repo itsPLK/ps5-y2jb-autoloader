@@ -8,6 +8,7 @@
 
 <p align="center">
     <b>Other Autoloaders:</b><br>
+    <a href="https://github.com/itsPLK/ps5-webkit-autoloader">WebKit</a> | 
     <a href="https://github.com/itsPLK/ps5-bdjb-autoloader">BD-JB</a> | 
     <a href="https://github.com/itsPLK/ps5-lua-autoloader">Lua</a>
 </p>
@@ -48,7 +49,7 @@ For a fixed, automated payload chain, you can configure payloads manually:
 
 ## How to Update
 
-Since version **v0.2**, you can update the autoloader by simply placing **`y2jb_update.zip`** (from the [Releases page](https://github.com/itsPLK/ps5_y2jb_autoloader/releases)) on the **root** of a USB drive, and starting the app.
+You can update the autoloader by simply placing **`y2jb_update.zip`** (from the [Releases page](https://github.com/itsPLK/ps5_y2jb_autoloader/releases)) on the **root** of a USB drive, and starting the app.
 
 ## Setup Instructions
 
@@ -56,20 +57,26 @@ Installation is the same as the original [Y2JB](https://github.com/Gezine/Y2JB/b
 
 
 ### Jailbroken PS5 (Webkit, Lua, BD-JB)
-- Install the correct YouTube version for your firmware:
-  - For firmware **4.03 to 12.40** get YouTube app (PPSA01650) version **01.000.003** PKG
-  - For firmware **12.60 and up** get YouTube app (PPSA01650) version **01.000.030** PKG
-  - *(Note: PPSA01651 and PPSA01652 from different regions also work)*
-- Use FTP to place `download0.dat` from releases page in `/user/download/PPSA0165*`
+
+Install YouTube (`PPSA01650` / `PPSA01651` / `PPSA01652`):
+
+| Firmware | YouTube Version |
+| :--- | :--- |
+| **4.03 – 12.40** | `v01.000.003` |
+| **12.60 – 13.20** | `v01.000.030` |
+| **13.40 – 13.60** | `v01.009.253` |
+
+Then FTP `download0.dat` from Releases to `/user/download/PPSA0165*/`.
 
 ### Non-Jailbroken PS5
 You might find a system backup with pre-configured Autoloader (I don't distribute such backups).
 
 You can also restore [Y2JB](https://github.com/Gezine/Y2JB) (remote loader) system backup, and then:
-- install Autoloader over it by using [y2jb_updater](https://github.com/itsPLK/y2jb_updater)
-- or use FTP to place `download0.dat` from releases page in `/user/download/PPSA01650`
-- or install separate YT app from different region, and use FTP to place `download0.dat` from releases page in `/user/download/PPSA0165*`
+- use FTP to place `download0.dat` from releases page in `/user/download/PPSA01650`
+- or install separate YT app from different region, and use FTP to place `download0.dat` from releases page in `/user/download/PPSA0165*/`
 
+> [!NOTE]
+> Firmwares 10.20–13.60 run Relapse, which requires an active network interface (Wi-Fi or Ethernet connected to a local network; Internet access is not required).
 
 ## Additional Info
 
