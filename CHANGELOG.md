@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.0.0
+- Added [Relapse](https://github.com/edisnord/relapse-y2jb) - thanks to [edisnord](https://github.com/edisnord)
+  - targets FW 10.20-13.60
+- Updated [elfldr](https://github.com/itsPLK/ps5-elfldr) to v0.26
+- Updated [unified-autoloader](https://github.com/itsPLK/ps5-unified-autoloader) to v0.1.5
+  - includes bundled [Payload Manager](https://github.com/itsPLK/ps5-payload-manager) v0.5.2
+
+
 ## v0.9.1
 - Updated [elfldr](https://github.com/itsPLK/ps5-elfldr) to v0.24
 - Updated [unified-autoloader](https://github.com/itsPLK/ps5-unified-autoloader) to v0.1.3
