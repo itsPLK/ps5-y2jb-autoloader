@@ -524,9 +524,8 @@ async function start_relapse() {
                     "this YouTube app version");
             say("worker chain self-test OK (pid " + via_chain.toString(10) + ")");
         }
-        const KEXP_BIN_NAMES = ["kexp_2026_05_25.bin", "kexp.bin"];
-        const ELFLDR_NAMES = ["elfldr-ps5-1360.elf", "elfldr-ps5-0.23.elf",
-            "elfldr_1320_v5.elf", "elfldr.elf"];
+        const KEXP_BIN_NAMES = ["@@KEXP_FILE@@"];
+        const ELFLDR_NAMES = ["@@ELFLDR_FILE@@"];
         const CACHE_SUBDIR = "download0/cache/splash_screen/aHR0cHM6Ly93d3cueW91dHViZS5jb20vdHY=";
         function payload_dirs() {
             const dirs = [];
@@ -538,7 +537,6 @@ async function start_relapse() {
             if (title)
                 for (const slot of ["000", "001", "002"])
                     dirs.push("/mnt/sandbox/" + title + "_" + slot + "/" + CACHE_SUBDIR);
-            for (let u = 0; u < 8; u++) dirs.push("/mnt/usb" + u);
             return dirs;
         }
         function list_dir(path, max) {
@@ -637,7 +635,7 @@ async function start_relapse() {
                 "; cache dir " + CACHE_SUBDIR + "). Probed:\n  " +
                 tried.join("\n  ") + "\nIf the sandbox cache is empty, Y2JB's " +
                 "payload files were evicted - re-install/re-copy them (see the " +
-                "Y2JB setup) or put " + names[0] + " on a USB stick.");
+                "Y2JB setup).");
         }
         const KEXP_SIG = {
             size: 18912,
@@ -681,10 +679,6 @@ async function start_relapse() {
             const tried = [];
             const elf_names = ELFLDR_NAMES.slice();
             const bin_names = KEXP_BIN_NAMES.slice();
-            try {
-                if (typeof ELFLDR_NAME === "string" && ELFLDR_NAME) elf_names.unshift(ELFLDR_NAME);
-                if (typeof BIN_NAME === "string" && BIN_NAME) bin_names.unshift(BIN_NAME);
-            } catch (_) { }
             let elf = await elfldr_bytes(tried);
             if (!elf) {
                 const found = find_payload(elf_names, /^elfldr.*\.elf$/i, tried);
@@ -6189,13 +6183,11 @@ async function start_relapse() {
                 (net_log_error || net_log_reason || "unknown reason") +
                 ". Without UDP the only transcript is the loader's TCP stream, " +
                 "which reorders and loses lines when the console dies");
-        send_notification(relapse_version + "\nFW " + FW_VERSION + "\n" +
-            (typeof version_string === "string" ? version_string : "Y2JB"));
         say("relapse-y2jb starting");
         if (typeof is_jailbroken === "function" && is_jailbroken()) {
             send_notification("relapse: already jailbroken");
             say("already jailbroken - nothing to do");
-            return false;
+            return true;
         }
         if (!ALLOW_AFTER_P2JB) {
             const p2jb_markers = ["/user/temp/common_temp/p2jb.fail"];
@@ -6382,18 +6374,17 @@ async function start_relapse() {
                 "; the sysctl OIDs are still hijacked, so kern.smp.cpus reads a " +
                 "kernel address instead of the CPU count until the next reboot") +
             " (eboot segments restored)"));
-        send_notification("relapse complete\nelfldr on <ps5-ip>:9021");
-        if (EXIT_TEST === "sigkill" || EXIT_TEST === "exit") {
-            const pid = syscall(SYSCALL.getpid);
-            say("EXIT_TEST=" + EXIT_TEST + ": ending this process (pid " + pid +
-                ") in 2s - if the console survives, the panic belongs to the " +
-                "graceful close path and not to the aio residue");
-            await sleep(2000);
-            if (EXIT_TEST === "sigkill") syscall(SYSCALL.kill, pid, 9n);
-            else syscall(1n /* SYS_exit */, 0n);
-            say("EXIT_TEST: the process is still here - the exit call returned " +
-                "(kill " + EXIT_TEST + " did not take effect)");
-        }
+        // if (EXIT_TEST === "sigkill" || EXIT_TEST === "exit") {
+        //     const pid = syscall(SYSCALL.getpid);
+        //     say("EXIT_TEST=" + EXIT_TEST + ": ending this process (pid " + pid +
+        //         ") in 2s - if the console survives, the panic belongs to the " +
+        //         "graceful close path and not to the aio residue");
+        //     await sleep(2000);
+        //     if (EXIT_TEST === "sigkill") syscall(SYSCALL.kill, pid, 9n);
+        //     else syscall(1n /* SYS_exit */, 0n);
+        //     say("EXIT_TEST: the process is still here - the exit call returned " +
+        //         "(kill " + EXIT_TEST + " did not take effect)");
+        // }
         return true;
     } catch (e) {
         try { log_now("FATAL: " + e.message); } catch (_) { }

@@ -22,6 +22,8 @@ y2jb_update.zip: $(SRC_FILES)
 	sed -i.bak "s/@@VERSION@@/$(RELEASE_VERSION)/g" build_dir/main.js && rm build_dir/main.js.bak
 	sed -i.bak "s/@@ELFLDR_FILE@@/$(ELFLDR_FILE)/g" build_dir/aioshellcode.js && rm build_dir/aioshellcode.js.bak
 	sed -i.bak "s/@@KEXP_FILE@@/$(KEXP_FILE)/g" build_dir/aioshellcode.js && rm build_dir/aioshellcode.js.bak
+	sed -i.bak "s/@@ELFLDR_FILE@@/$(ELFLDR_FILE)/g" build_dir/relapse.js && rm build_dir/relapse.js.bak
+	sed -i.bak "s/@@KEXP_FILE@@/$(KEXP_FILE)/g" build_dir/relapse.js && rm build_dir/relapse.js.bak
 	python3 third_party/y2jb-updater/create_update_package.py build_dir
 	rm -rf build_dir
 
